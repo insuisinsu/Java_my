@@ -1,4 +1,6 @@
 package Work;
+
+//내가 이것을 수정하였도다.
 class Student{
 	String name;
 	int studentID;
@@ -7,6 +9,7 @@ class Student{
 	int math;
 	int sum;
 	double avg;
+	int asdf;
 	
 	void hobby() {
 		System.out.println(name + " 학생의 취미는 ~ 입니다.");
