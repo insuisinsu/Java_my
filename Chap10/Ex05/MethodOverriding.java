@@ -51,7 +51,7 @@ public class MethodOverriding {
 		A ab = new B();
 		ab.print();
 		//A 의 print() 메소드 호출 --> B 의 print() 메소드 출력
-		
+		System.out.println("0==");
 		A ac = new C();
 		ac.print();
 		
