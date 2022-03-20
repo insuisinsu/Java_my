@@ -1,87 +1,88 @@
 package Chap11.Ex06;
 
-abstract class Animal {
+abstract class Animal{
 	String name;
 	int age;
 	
+	@Override
+	public String toString() {
+		return "종류는 "+name+" 이고, "+age+" 살 입니다.";
+	}
 	abstract void cry();
 	abstract void run();
 }
 
 class Cat extends Animal{
-	
-	void cry(String name, int age) {
-		this.name = name;
-		this.age = age;
-		System.out.println(name + " 는 "+age+" 살 입니다.");
-		this.cry();
-		this.run();
+
+	Cat (String name, int age){
+		super.name = name;
+		super.age = age;
 	}
 	@Override
 	void cry() {
-		System.out.print("은 야옹 울고, ");
+		System.out.println("고양이는 야옹");
 	}
-
 	@Override
 	void run() {
-		System.out.println("날렵합니다.");
+		System.out.println("고양이는 날렵");
 	}
-	
 }
+
 class Tiger extends Animal{
-	void cry(String name, int age) {
-		this.name = name;
-		this.age = age;
-		System.out.println(name + " 는 "+age+" 살 입니다.");
-		this.cry();
-		this.run();
+	Tiger (String name, int age){
+		super.name = name;
+		super.age = age;
 	}
 	@Override
 	void cry() {
-		System.out.print("은 야옹 울고, ");
+		System.out.println("호랑이는 어흥");
 	}
-
 	@Override
 	void run() {
-		System.out.println("날렵합니다.");
+		System.out.println("호랑이는 민첩");
 	}
-}
+} 
 
 class Egle extends Animal{
-	void cry(String name, int age) {
-		this.name = name;
-		this.age = age;
-		System.out.println(name + " 는 "+age+" 살 입니다.");
-		this.cry();
-		this.run();
+	Egle (String name, int age){
+		super.name = name;
+		super.age = age;
 	}
 	@Override
 	void cry() {
-		System.out.print("은 야옹 울고, ");
+		System.out.println("독수리는 끼룩");
 	}
-
 	@Override
 	void run() {
-		System.out.println("날렵합니다.");
+		System.out.println("독수리는 하늘");
 	}
 }
 
 public class AbstractModifier_3 {
-
 	public static void main(String[] args) {
-
 		
 		Animal a1 = new Cat("고양이", 10);
 		Animal a2 = new Tiger("호랑이", 5);
 		Animal a3 = new Egle("독수리", 15);
-		
-		Animal[] arr = {a1, a2, a3};
-		
-		for(int i = 0 ; i < arr.length ; i++) {
-			arr[i].name;
-			arr[i].age;
+		Animal[] arr2 = {a1, a2, a3};
+		for(int i = 0; i < arr2.length; i++) {
+			System.out.println(arr2[i].name+" 시작====================");
+			System.out.println();
+			System.out.println(arr2[i]);
+			arr2[i].cry();
+			arr2[i].run();
+			System.out.println();
+			System.out.println(arr2[i].name+" 끝====================");
+			System.out.println();
 		}
 		
+		for(Animal k : arr2) {
+			System.out.println(k);
+			k.cry();
+			k.run();
+		}
+		
+		
+		
 	}
-
 }
