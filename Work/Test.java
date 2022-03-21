@@ -16,7 +16,7 @@ class A{
 	}
 }
 
-public class DD {
+public class Test {
 
 	public static void main(String[] args) {
 
