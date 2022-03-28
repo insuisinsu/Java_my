@@ -23,11 +23,20 @@ package Chap15.Ex10;
 // 작업하는 동안 다른 쓰레드가 접근하지 못하게 막아줌
 // == 하나의 쓰레드가 작업이 완료되면 다음 쓰레드가 작업을 할 수 있음
 
+class A{}
+class B{}
+class C{}
+
+
+
 //쓰레드가 공유하는 객체 필드 생성
 class MyData {
 	int data = 3;
 	public void plusData(){
-		synchronized(this) {			//블락 동기화 : 메서드의 일부분만 동기화
+		synchronized(new Object()) {			//블락 동기화 : 메서드의 일부분만 동기화,, this : 자신의 객체
+										//this : 자신의 객체를 뜻하고, 동기화 블록에 접근하는 키 이다.
+										//모든 쓰레드는 key 를 가져야 동기화 블럭에 접근할 수 있다.
+										//key는 임의의 객체를 키로 사용할 수 있다.
 			int mydata = data;
 			try{
 				Thread.sleep(2000);
