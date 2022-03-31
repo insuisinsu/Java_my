@@ -1,4 +1,4 @@
-package Chap16.Ex06;
+package Chap16.Ex06.Ex1;
 
 public class Water {
 	public void doPinting() {

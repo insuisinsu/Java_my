@@ -1,10 +1,10 @@
-package Chap16.Ex06;
+package Chap16.Ex06.Ex1;
 
 //GericPrinter 에 사용될 객체 [재료] 
 
-public class Plastic {
+public class Plastic extends Meterial {
 
-	public void doPrinting() { 
+	public void doPrinting() { 		// 추상 메소드의 클래스를 구현한 메소드 
 		System.out.println("플라스틱 재료로 출력 합니다. ");
 	}
 	 @Override

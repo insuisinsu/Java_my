@@ -1,7 +1,8 @@
-package Chap16.Ex06;
+package Chap16.Ex06.Ex1;
 
 //Á¦³Ê¸¯ Å¬·¡½º : ´Ù¾çÇÑ Å¸ÀÔÀ» »ç¿ëÇÒ ¼ö ÀÖ´Â Å¬·¡½º 
-public class GenericPrinter <T> {   //´Ù¾çÇÑ Àç·Î·Î ÇÁ¸°ÆÃ ÇÏ´Â ÇÁ¸°ÅÍ (ÆÄ¿ì´õ,ÇÃ¶ó½ºÆÃ, ¹° ) 
+public class GenericPrinter <T extends Meterial> {   //
+				// T : Å¸ÀÔÁ¦ÇÑ , Meterial ÇÏÀ§ Å¬·¡½º¸¸  T Å¸ÀÔ¿¡ µé¾î ¿Ã ¼ö ÀÖ´Ù. 
 
 	private T material ;		// meterial : ÂüÁ¶º¯¼ö , °´Ã¼, ÀÎ½ºÅÏ½º, 
 
@@ -17,7 +18,7 @@ public class GenericPrinter <T> {   //´Ù¾çÇÑ Àç·Î·Î ÇÁ¸°ÆÃ ÇÏ´Â ÇÁ¸°ÅÍ (ÆÄ¿ì´õ,Ç
 		return material.toString();      //ÇØ´ç °´Ã¼ÀÇ toString()¸Ş¼Òµå È£Ãâ 
 	}
 	public void printing() {   //¸Ş¼Òµå¸¸ Á¤ÀÇ 
-		//material.doPrinting();
+		material.doPrinting();
 	}
 	
 	

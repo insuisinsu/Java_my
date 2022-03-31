@@ -1,4 +1,4 @@
-package Chap16.Ex06;
+package Chap16.Ex06.Ex1;
 
 public class Printer_Test {
 
@@ -18,15 +18,18 @@ public class Printer_Test {
 		System.out.println(plasticPrinter); 
 		System.out.println(plastic);
 		plastic.doPrinting();
+		plasticPrinter.printing();
 		System.out.println("====================================");
 		
+		//Water는 Meterial 의 자식이 아니므로 타입에 저장 할 수 없다. 
+		/*
 		GenericPrinter<Water> waterPrinter = new GenericPrinter<Water>(); 
 		waterPrinter.setMaterial(new Water());
 		Water water = waterPrinter.getMaterial(); 
 		System.out.println(waterPrinter);
 		System.out.println(water);
 		water.doPinting();
-		
+		*/
 		
 		
 	}
