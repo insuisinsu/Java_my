@@ -76,19 +76,19 @@ public class HashSetMethod {
 //						next() : 현재 값을 출력하고 다음값으로 이동
 		Iterator<String> iterator = hSet3.iterator();
 		//클래스<E> 추가    참조객체  = Set 객체 .iterator();
-		System.out.println("irerator() 를 사용한 출력 ===================");
+		System.out.println("iterator() 를 사용한 출력 ===================");
 		while(iterator.hasNext()) {
 			System.out.print(iterator.next()+"  ");
 		}System.out.println();
 
-		System.out.println("irerator() 를 사용한 출력 ===================");
+		System.out.println("Enhanced for 를 사용한 출력 ===================");
 		
 		for(String k : hSet3) {
 			System.out.print(k+"  ");
 		}System.out.println();
 		
-		
-//		9. toAttay() : Set 의 값들을 배열로 보낸다. Object 타입으로 리턴, 다운 캐스팅 필요함
+		System.out.println("toArray");
+//		9. toArray() : Set 의 값들을 배열로 보낸다. Object 타입으로 리턴, 다운 캐스팅 필요함
 		Object[] objArray = hSet3.toArray();
 		System.out.println(Arrays.toString(objArray));
 		for (int i =0; i<objArray.length; i++) {

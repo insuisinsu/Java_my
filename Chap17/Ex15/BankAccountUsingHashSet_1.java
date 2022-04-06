@@ -1,7 +1,14 @@
-package Chap17.Ex13;
+package Chap17.Ex15;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.Set;
+
+import Chap10.Ex07.Ex03.ObjectMethod_Hashcode;
 
 class Account{					//계좌 정보를 저장하는 객체, 중요한 필드이기 때문에 private 를 통해 캡슐화 되어있음
 								//객체명으로 필드 접근이 불가능,, 생성자(), getter(), setter() 통해서 처리
@@ -41,17 +48,31 @@ class Account{					//계좌 정보를 저장하는 객체, 중요한 필드이기 때문에 private �
 		this.balance = balance;
 	}
 	
-
-	
+	@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Account) {
+				if(this.ano.equals(((Account)obj).ano)) {
+					return true;
+				}
+			}
+		return false;
+		}
+	@Override
+		public int hashCode() {
+			return Objects.hash(ano);
+		}
 	
 	
 }
 
-public class BankAccountUsingArray {
-	//배열을 사용해서 Account 객체 등록
-	private static Account[] accountArray = new Account[100];		//배열에 객체 저장.
-	//Account[] : 배열 타입.참조타입.. 배열의 각 방에 값이 존재하지 않을 경우 -> 기본값으로 Null
+public class BankAccountUsingHashSet_1 {
+	//컬렉션(ArrayList<E>)을 사용해서 Account 객체 등록
 	//배열은 생성시에 방크기(index)를 지정해줘야 함,, index 는 0 부터 시작 / .length() 로 방의 크기 확인 / 
+	//배열은 방의 크기가 고정되어 있으나, 컬렉션은 방의 크기가 동적임(늘어났다(무한) 줄어들었다 가능)
+	//컬렉션은 .add() 를 사용하여 가장 마지막 방에 값을 넣고,
+	// .remove(방번호) 를 통해 값을 삭제함
+	private static Set<Account> aSet = new HashSet();		//배열에 객체 저장.
+	//Account[] : 배열 타입.참조타입.. 배열의 각 방에 값이 존재하지 않을 경우 -> 기본값으로 Null
 	
 	
 	private static Scanner sc = new Scanner(System.in);
@@ -77,15 +98,9 @@ public class BankAccountUsingArray {
 		Account newAccount = new Account(ano, owner, balance);	//생성자를 통해서 객체에 필드값 적용후 객체 생성
 		
 		//배열 선언은 메소드 외부에서 선언됨, 전역변수임 : 모든 메소드에서 사용 가능
-		//객체를 배열에 저장,,비어있는 방에 저장해야 함 ,, for 사용해서 null인 방을 찾아서 객체를 저장해야 함
-		for (int i = 0; i < accountArray.length; i++) {
-			if(accountArray[i] == null) {				//
-				accountArray[i] = newAccount;		
-				System.out.println("계좌가 생성되었습니다.");
-				break;									//계좌를 생성하고 for 문을 빠져나옴
-			}
-		}
-		
+			
+		aSet.add(newAccount);
+				
 	}
 	
 	private static void accountList() {
@@ -94,16 +109,26 @@ public class BankAccountUsingArray {
 		System.out.println("2. 계좌목록");
 		System.out.println("--------------------------------------------------------");
 		
-		//배열의 각 방을 순회하면서 null 이 아닌경우 객체를 꺼내서 필드의 정보 출력
-		for(int i = 0; i < accountArray.length ; i++) {
-			//각 방의 객체를 담는 변수를 선언
-			Account account = accountArray[i]; // 0 ~ 99 방의 객체를 account 참조 변수에 담는다.
+		Iterator<Account> iterator = aSet.iterator();
+		
+		while(iterator.hasNext()) {				//첫번째 값
+			Account account = iterator.next();	//iterator 의 값을 account 로 가져옴
 			if(account != null) {
-				System.out.print("계좌번호 : "+account.getAno()+"     ");
-				System.out.print("소유주 : "+account.getOwner()+"    ");
-				System.out.println("잔액 : " + account.getBalance()+" 원");
+				System.out.print("계좌번호 : "+iterator.next().getAno()+"     ");
+				System.out.print("소유주 : "+iterator.next().getOwner()+"    ");
+				System.out.println("잔액 : " + iterator.next().getBalance()+" 원");
 			}
 		}
+		
+//		for(Account k : aSet) {
+//			System.out.print("계좌번호 : "+k.getAno()+"     ");
+//			System.out.print("소유주 : "+k.getOwner()+"    ");
+//			System.out.println("잔액 : " + k.getBalance()+" 원");
+//		}
+		
+		
+		
+		
 		
 	}
 	private static void deposit () {
@@ -176,17 +201,18 @@ public class BankAccountUsingArray {
 	// 예금 및 출금에 사용되는 공통 코드
 	private static Account findAccount(String ano) {
 		Account account = null;
-		for(int i = 0; i < accountArray.length; i++) {
-			if(accountArray[i] != null) {	//배열방의 값이 null 이 아닐 경우에 객체의 ano'계좌번호'를 확인
-				//각 객체의 방에 ano 를 담는 변수 선언
-				String dbAno = accountArray[i].getAno();	//배열의 각 방에 저장된 객체의 ano 를 dbAno에 저장
-				if(dbAno.equals(ano)) {
-					account = accountArray[i];
-					break;
-				}
+		Iterator<Account> iterator = aSet.iterator();
+		
+		while(iterator.hasNext()) {
+			Account a1 = iterator.next();
+			String dbAno = a1.getAno();
+			if(dbAno.equals(ano)) {
+				account = a1;
+				return account;
 			}
 		}
 		return account;
+
 	}
 	
 	public static void main(String[] args) {

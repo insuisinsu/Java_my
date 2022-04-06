@@ -1,5 +1,6 @@
-package Chap17.Ex13;
+package Chap17.Ex14;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -47,11 +48,14 @@ class Account{					//계좌 정보를 저장하는 객체, 중요한 필드이기 때문에 private �
 	
 }
 
-public class BankAccountUsingArray {
-	//배열을 사용해서 Account 객체 등록
-	private static Account[] accountArray = new Account[100];		//배열에 객체 저장.
-	//Account[] : 배열 타입.참조타입.. 배열의 각 방에 값이 존재하지 않을 경우 -> 기본값으로 Null
+public class BankAccountUsingArrayList_1 {
+	//컬렉션(ArrayList<E>)을 사용해서 Account 객체 등록
 	//배열은 생성시에 방크기(index)를 지정해줘야 함,, index 는 0 부터 시작 / .length() 로 방의 크기 확인 / 
+	//배열은 방의 크기가 고정되어 있으나, 컬렉션은 방의 크기가 동적임(늘어났다(무한) 줄어들었다 가능)
+	//컬렉션은 .add() 를 사용하여 가장 마지막 방에 값을 넣고,
+	// .remove(방번호) 를 통해 값을 삭제함
+	private static ArrayList<Account> aList = new ArrayList();		//배열에 객체 저장.
+	//Account[] : 배열 타입.참조타입.. 배열의 각 방에 값이 존재하지 않을 경우 -> 기본값으로 Null
 	
 	
 	private static Scanner sc = new Scanner(System.in);
@@ -77,15 +81,9 @@ public class BankAccountUsingArray {
 		Account newAccount = new Account(ano, owner, balance);	//생성자를 통해서 객체에 필드값 적용후 객체 생성
 		
 		//배열 선언은 메소드 외부에서 선언됨, 전역변수임 : 모든 메소드에서 사용 가능
-		//객체를 배열에 저장,,비어있는 방에 저장해야 함 ,, for 사용해서 null인 방을 찾아서 객체를 저장해야 함
-		for (int i = 0; i < accountArray.length; i++) {
-			if(accountArray[i] == null) {				//
-				accountArray[i] = newAccount;		
-				System.out.println("계좌가 생성되었습니다.");
-				break;									//계좌를 생성하고 for 문을 빠져나옴
-			}
-		}
-		
+			
+		aList.add(newAccount);
+				
 	}
 	
 	private static void accountList() {
@@ -95,9 +93,9 @@ public class BankAccountUsingArray {
 		System.out.println("--------------------------------------------------------");
 		
 		//배열의 각 방을 순회하면서 null 이 아닌경우 객체를 꺼내서 필드의 정보 출력
-		for(int i = 0; i < accountArray.length ; i++) {
+		for(int i = 0; i < aList.size() ; i++) {
 			//각 방의 객체를 담는 변수를 선언
-			Account account = accountArray[i]; // 0 ~ 99 방의 객체를 account 참조 변수에 담는다.
+			Account account = aList.get(i); // 0 ~ 99 방의 객체를 account 참조 변수에 담는다.
 			if(account != null) {
 				System.out.print("계좌번호 : "+account.getAno()+"     ");
 				System.out.print("소유주 : "+account.getOwner()+"    ");
@@ -176,12 +174,13 @@ public class BankAccountUsingArray {
 	// 예금 및 출금에 사용되는 공통 코드
 	private static Account findAccount(String ano) {
 		Account account = null;
-		for(int i = 0; i < accountArray.length; i++) {
-			if(accountArray[i] != null) {	//배열방의 값이 null 이 아닐 경우에 객체의 ano'계좌번호'를 확인
+		for(int i = 0; i < aList.size(); i++) {
+			if(aList.get(i) != null) {	//배열방의 값이 null 이 아닐 경우에 객체의 ano'계좌번호'를 확인
 				//각 객체의 방에 ano 를 담는 변수 선언
-				String dbAno = accountArray[i].getAno();	//배열의 각 방에 저장된 객체의 ano 를 dbAno에 저장
+				String dbAno = aList.get(i).getAno();	//각 방에 저장된 객체의 ano 를 dbAno에 저장
+											//get(i) 가 객체를 불러오고, getAno()가 그 객체의 필드값을 물러옴 
 				if(dbAno.equals(ano)) {
-					account = accountArray[i];
+					account = aList.get(i); //account 참조변수는 객체의 주소정보를 담는다.
 					break;
 				}
 			}
