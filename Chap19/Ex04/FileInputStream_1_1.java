@@ -24,7 +24,7 @@ public class FileInputStream_1_1 {
 		int data;
 		try {
 			while((data = is.read()) != -1) {	//IOException 발생
-				System.out.println((char)data);
+				System.out.print((char)data);
 			}
 		} catch (IOException e) {
 			System.out.println("파일을 읽지 못하는 예외가 발생되었어요.");
@@ -46,7 +46,7 @@ public class FileInputStream_1_1 {
 		try {
 			is2 = new FileInputStream(inFile);
 			while((data2 = is2.read()) != -1) {		//IOException 으로 포괄적으로 처리  얘가 FileNot~ 보다 상위에 있음
-				System.out.println((char)data2);
+				System.out.print((char)data2);
 			}
 		}catch (IOException e) {
 			System.out.println("예외가 발생했지요.");

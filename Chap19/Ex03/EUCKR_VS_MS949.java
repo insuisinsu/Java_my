@@ -16,6 +16,7 @@ public class EUCKR_VS_MS949 {
  				. 약 11,000 자 모두 표기 가능
  				. 영문 - 1byte, 한글 - 2byte
  				. Windows OS 의 기본 설정
+ 				. (ANSI)
  				
  		UTF-8	. <가변 길이>
  				. 모든 서버(Web, FTP, Mail, DB ... 등), git, Mac 의 기본설정
@@ -23,6 +24,7 @@ public class EUCKR_VS_MS949 {
  		 
  		UTF-16 	. <고정 길이>
  				. 영문, 한글 - 2byte
+ 				. BOM 2byte
  				
  		문자를 해당 인코딩 타입으로 바이트 스트림으로 생성한 경우, 해당 인코딩 타입으로 조합을 해야 깨지지 않음
  		
