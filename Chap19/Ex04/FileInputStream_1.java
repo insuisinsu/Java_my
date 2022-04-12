@@ -29,6 +29,14 @@ public class FileInputStream_1 {
 		//UTF-16 : 영어 - 2, 한글 - 2
 		//MS949 : 영어 - 1, 한글 - 2
 		//EUC-KR : 영어 - 1, 한글 - 2
+		
+//		JAVA 에서 줄 바꿈 처리
+//		UNIX	: \n
+//		Windows	: \r\n	.. \r 은 생략해도 됨. / 콘솔이나 메모장에서 enter 를 넣으면 \r\n
+//		MAC		: \r
+		
+		
+		System.out.println(is.read());
 		System.out.print((char)is.read());
 		System.out.print((char)is.read());
 		System.out.print((char)is.read());
