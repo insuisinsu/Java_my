@@ -1,8 +1,6 @@
 package Chap17.Ex16;
 
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.Scanner;
 
 class Account{					
 	private String ano;		//°èÁÂ¹øÈ£

@@ -46,6 +46,12 @@ public class Ex06_ConsoleInputOutputObject {
 		}
 		is2.close();
 		
+		OutputStream os2 = System.out;
+		String str = new String(byteArray2);
+		str.getBytes();
+		os2.write(byteArray2);
+		os2.flush();
+		os2.close();
 		
 		
 		
