@@ -12,6 +12,16 @@ import java.util.TreeSet;
 
 public class Employee2 {
 	
+	/*
+	  	Treeset : 중복된 데이터를 저장할 수 없음. Wrapper 클래스는 재정의 되어있음. equals(), hashCode()
+	  			: Tree는 정렬되어서 저장
+	  			일반객체를 set 자료형에 저장할 때는 객체의 틀정필드가 중복 저장되지 않도록 equals(), hashCode() 재정의 필요 
+	  	Wrapper 클래스 : 기본자료형을 객체와 기본자료형에는 없는 메소드가 추가 (Boolean, Byte, Charactor, Integer, Double...)
+	  			Comparable compareTo() - 상속해서 구현해야 함, 객체수정 필요, /  Comparator compare() - 수정없이 사용가능 / 가 재정의 되어 있음
+	 
+	 */
+	
+	
 	private static TreeSet<Employee> tSet = new TreeSet<Employee>(new Comparator<Employee>() {
 		public int compare(Employee o1, Employee o2) {
 			if(o1.getEmpNo() < o2.getEmpNo()) { 		//내림차순 정렬처리
