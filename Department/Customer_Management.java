@@ -113,7 +113,7 @@ class GoldCustomer extends Customer {
 	
 	@Override
 	public double calcPrice(int price) {
-		bonusPoint = bonusPoint + price*bonusRatio/2;
+		bonusPoint = bonusPoint + price*bonusRatio;
 		return price - price*saleRatio;
 	}
 	
@@ -147,7 +147,7 @@ class VIPCustomer extends Customer {
 	
 	@Override
 	public double calcPrice(int price) {
-		bonusPoint = bonusPoint + price*bonusRatio/2;
+		bonusPoint = bonusPoint + price*bonusRatio;
 		return price - price*saleRatio;
 	}
 }
@@ -164,6 +164,9 @@ public class Customer_Management {
 		GoldCustomer gold = new GoldCustomer(0, null);
 		VIPCustomer vip = new VIPCustomer(0, null, 0);
 		
+		int id;
+		String name;
+		
 		
 		boolean run = true; 
 		while (run) {
@@ -176,10 +179,10 @@ public class Customer_Management {
 			if (selectNO == 1) {
 				System.out.println("일반고객 등록");
 				System.out.println("고객번호를 입력하세요. >>");
-				silver.setCustomerID(sc.nextInt());
+				id = sc.nextInt();
 				System.out.println("이름을 입력하세요.");
-				silver.setCustomerName(sc.next());
-				customerList.add(silver);
+				name = sc.next();
+				customerList.add(new SilverCustomer(id, name));
 			}else if (selectNO == 2) {
 				System.out.println("Gold 고객 등록");
 				System.out.println("고객번호를 입력하세요. >>");
@@ -214,12 +217,10 @@ public class Customer_Management {
 					System.out.println("현재 포인트는 "+silver.bonusPoint+" 입니다.");
 					
 				}else if (customerID == gold.getCustomerID()) {
-					gold.calcPrice(price);
 					System.out.println(gold.getCustomerName() + " 고객님은 "+gold.calcPrice(price)+" 원 지불하셨습니다.");
 					System.out.print(gold.getCustomerName() + " 고객님의 등급은  "+gold.getCustomerGrade()+" 이고, ");
 					System.out.println("현재 포인트는 "+gold.bonusPoint+" 이고, "+price*gold.saleRatio+" 원 할인되었습니다.");
 				}else if (customerID == vip.getCustomerID()){
-					vip.calcPrice(price);
 					System.out.println(vip.getCustomerName() + " 고객님은 "+vip.calcPrice(price)+" 원 지불하셨습니다.");
 					System.out.print(vip.getCustomerName() + " 고객님의 등급은  "+vip.getCustomerGrade()+" 이고, ");
 					System.out.println("현재 포인트는 "+vip.bonusPoint+" 이고, "+price*vip.saleRatio+" 원 할인되었습니다.");
