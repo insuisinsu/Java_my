@@ -1,9 +1,11 @@
 package fruit_ex;
 
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+<<<<<<< HEAD
 /*
  	백화점의 고객 관리 프로그램.  (상속과 다형성) 
 	
@@ -26,6 +28,29 @@ class Customer{		//일반고객 (Silver)
 		bounsPoint += price * bonusRatio;
 		return price; 	//할인된 가격을 리턴시켜 준다.
 	
+=======
+
+/*
+ * 백화점의 고객 관리 프로그램(상속과 다형성)
+ * 
+ * 고객 등급 :	1. 	일반고객(Silver) : 보너스 포인트(1%적립) 할인율 없음
+ *  		2.	Gold고객 : 보너스 포인트(2%적립) 할인(5%)
+ *  		3.	VIP고객 : 보너스 포인트(5%적립) 할인(10%), 담당 직원 있음
+ */
+
+class Customer {
+	int customerID; // 고객 ID
+	String customerName;
+	String customerGrade; // 고객 등급("Silver", "Gold", "VIP")
+	double bonusPoint; // 보너스 포인트 값
+	double bonusRatio; // 보너스 포인트 적립율 : 실버 1%, 골드2%, VIP5%
+
+	public double calcPrice(int price) {
+		// 물품의 가격을 받아서 bonus포인트 적립하는 코드
+		bonusRatio = 0.01;
+		bonusPoint = bonusPoint + (price * bonusRatio);
+		return price;
+>>>>>>> 4b75b1a26b9422e4fed7f7f38b7941c15675b8dd
 	}
 	
 	
@@ -77,7 +102,19 @@ class VIPCustomer extends Customer{
 		bounsPoint += price * bonusRatio;
 		return super.calcPrice(price);
 	}
+<<<<<<< HEAD
 	
+=======
+
+	@Override
+	public String toString() {
+		super.saleRatio = 0.1;
+		bonusRatio = 0.05;
+		return "고객ID : " + customerID + ", 고객명  s : " + customerName + ", 고객등급 : " + customerGrade + ", 포인트 값 : "
+				+ bonusPoint + ", 적립율 : " + bonusRatio + ", 할인율" + this.saleRatio + ", 에이전트ID : " + agentID;
+	}
+
+>>>>>>> 4b75b1a26b9422e4fed7f7f38b7941c15675b8dd
 }
 
 

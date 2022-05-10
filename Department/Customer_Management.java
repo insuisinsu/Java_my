@@ -69,25 +69,10 @@ class Customer {
 	}
 
 //	고객이름, 등급 불러오기
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-	public String getCustomerGrade() {
-		return customerGrade;
-	}
-
-	public void setCustomerGrade(String customerGrade) {
-		this.customerGrade = customerGrade;
-	};
-	
-	
-
-	
+	public String getCustomerName() {return customerName;}
+	public void setCustomerName(String customerName) {this.customerName = customerName;}
+	public String getCustomerGrade() {return customerGrade;}
+	public void setCustomerGrade(String customerGrade) {this.customerGrade = customerGrade;};
 	
 }
 
@@ -166,6 +151,7 @@ public class Customer_Management {
 		
 		int id;
 		String name;
+		int agentid;
 		
 		
 		boolean run = true; 
@@ -186,19 +172,19 @@ public class Customer_Management {
 			}else if (selectNO == 2) {
 				System.out.println("Gold 고객 등록");
 				System.out.println("고객번호를 입력하세요. >>");
-				gold.setCustomerID(sc.nextInt());
+				id = sc.nextInt();
 				System.out.println("이름을 입력하세요.");
-				gold.setCustomerName(sc.next());
-				customerList.add(gold);
+				name = sc.next();
+				customerList.add(new GoldCustomer(id, name));
 			}else if (selectNO == 3) {
 				System.out.println("VIP 고객 등록");
 				System.out.println("고객번호를 입력하세요. >>");
-				vip.setCustomerID(sc.nextInt());
+				id = sc.nextInt();
 				System.out.println("이름을 입력하세요.");
-				vip.setCustomerName(sc.next());
+				name = sc.next();
 				System.out.println("담당직원의 ID를 입력하세요.");
-				vip.setAgentID(sc.nextInt());
-				customerList.add(vip);
+				agentid = sc.nextInt();
+				customerList.add(new VIPCustomer(id, name, agentid));
 			}else if (selectNO == 4) {
 				System.out.println("고객 ID  | 고객 이름 | 고객 등급 | 보너스 포인트 비율 | 에이전트ID(VIP전용)");
 				for(Customer k : customerList) {
@@ -210,7 +196,7 @@ public class Customer_Management {
 				int customerID = sc.nextInt();
 				System.out.println("구매 물품의 가격을 입력하세요.");
 				int price = sc.nextInt();
-				if(customerID == silver.getCustomerID()) {
+				if(customerID == silver.customerID) {
 					silver.calcPrice(price);
 					System.out.println(silver.getCustomerName() + " 고객님은 "+price+" 원 지불하셨습니다.");
 					System.out.print(silver.getCustomerName() + " 고객님의 등급은  "+silver.getCustomerGrade()+" 이고, ");
